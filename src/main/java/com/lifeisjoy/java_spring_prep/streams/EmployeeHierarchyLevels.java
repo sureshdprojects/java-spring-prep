@@ -32,7 +32,6 @@ public class EmployeeHierarchyLevels {
                 Employee::managerId,
                 emp -> {
                     List<String> names = new ArrayList<>();
-                    ;
                     names.add(emp.name());
                     return names;
                 },
@@ -44,6 +43,37 @@ public class EmployeeHierarchyLevels {
         ));
 
         System.out.println(result);
+
+        TreeMap<Integer, List<String>> mapping = employees.stream()
+                .filter(employee -> employee.managerId() != null)
+                .collect(Collectors.toMap(
+                        Employee::managerId,
+                        emp -> {
+                            List<String> names = new ArrayList<>();
+                            names.add(emp.name());
+                            return names;
+                        },
+                        (existing, replacement) -> {
+                            existing.add(replacement.getFirst());
+                            return existing;
+                        },
+                        TreeMap::new
+                ));
+
+        System.out.println(mapping);
+
+
+        TreeMap<Integer, List<String>> collect = employees.stream().filter(employee -> employee.managerId() != null)
+                .collect(Collectors.groupingBy(
+                        Employee::managerId,
+                        TreeMap::new,
+                        Collectors.mapping(
+                                Employee::name, Collectors.toList()
+                        )
+                ));
+
+
+        System.out.println(collect);
 
 
     }

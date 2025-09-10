@@ -9,8 +9,9 @@ public class MoveAllZeroesToTheRight {
     */
     public static void main(String[] args) {
 
-        int[] numbers = new int[]{0, 1, 4, 0, 5, 0, 2,};
+        int[] numbers = new int[]{0, 1, 4, 0, 5, 0, 2};
         moveAllZeroesToRight(numbers);
+        moveAllZeroesToRight2(numbers);
 
     }
 
@@ -35,6 +36,34 @@ public class MoveAllZeroesToTheRight {
         }
 
         System.out.println(Arrays.toString(numbers));
+    }
+
+    //practice
+    private static void moveAllZeroesToRight2(int[] numbers) {
+
+        System.out.println("Practice code!");
+        int zeroPointerIndex = 0;
+        for(int i=0; i<numbers.length; i++){
+            if (numbers[i]==0){
+                zeroPointerIndex = i;
+                break;
+            }
+        }
+
+        for (int nonZeroPointerIndex= zeroPointerIndex + 1; nonZeroPointerIndex<numbers.length; nonZeroPointerIndex++){
+
+            if (numbers[nonZeroPointerIndex]!=0){
+                numbers[zeroPointerIndex] = numbers[nonZeroPointerIndex];
+                numbers[nonZeroPointerIndex] = 0;
+                zeroPointerIndex++;
+            }
+
+        }
+
+        System.out.println(Arrays.toString(numbers));
+
+
+
     }
 
 }

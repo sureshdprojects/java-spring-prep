@@ -4,20 +4,20 @@ public class SecondSmallestElementInAnArray {
 
     public static void main(String[] args) {
         System.out.println(secondSmallest(new int[]{1,2,3,4,5}));
-        System.out.println(secondSmallest(new int[]{-1,-2,-3}));
+        System.out.println(secondSmallest(new int[]{-1,-2,-3,-4}));
     }
 
     public static int secondSmallest(int[] numbers){
 
-        int smallest = numbers[0];
+        int smallest = Integer.MAX_VALUE;
         int secondSmallest = Integer.MAX_VALUE;
 
-        for (int i = 1; i < numbers.length; i++){
-            if (numbers[i] < smallest){
+        for (int number: numbers){
+            if (number < smallest){
                 secondSmallest = smallest;
-                smallest = numbers[i];
-            } else if (numbers[i] < secondSmallest && numbers[i] != smallest){
-                secondSmallest = numbers[i];
+                smallest = number;
+            } else if (number < secondSmallest && number != smallest){
+                secondSmallest = number;
             }
         }
 

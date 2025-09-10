@@ -21,8 +21,16 @@ public class FindDuplicateElements {
 
         System.out.println(list2);
 
-        //to maintain the order use linked hash map
-        LinkedHashMap<Integer, Long> frequencyMapInPreservedOrder = nums.stream().collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        List<Integer> repeatedNumbers = nums.stream().collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()
+                )).entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .toList();
+
+        System.out.println(repeatedNumbers);
 
 
     }
