@@ -17,7 +17,6 @@ Java 10:
 
   //from java 10
   var idToNameMap = new HashMap<Integer, String>();
-
   
   - It cant be used for memeber varibales, method parameters, or return types.
   - Reduces boilerplate
@@ -51,6 +50,8 @@ speacial type of java class designed to create concise, immutable data-carrier c
 By using the record keyword, you can declare a complete data class in a single line. 
 
 public record Person(String firstName, String lastName) {}
+Person person = new Person("John", "Doe");
+
 
 private final field for each data component
 a public constructor that accepts all components
