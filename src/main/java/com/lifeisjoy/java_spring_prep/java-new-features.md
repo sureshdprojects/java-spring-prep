@@ -60,6 +60,43 @@ Public accessor methods for each component, which have the same name as the fiel
 Implementations of equals(), hashCode(), and toString() methods. 
 
 
+Java 17:
+
+Sealed class
+
+public sealed class Shape permits Circle, Rectangle, Triangle, Square {...}
+
+public final class Circle extends Shape {
+    // ...
+}
+
+// `Square` is a non-sealed permitted subclass, so it can be extended by any class.
+public non-sealed class Square extends Shape {
+    // ...
+}
+
+// `Triangle` is a sealed permitted subclass, so it must define its own permits.
+public sealed class Triangle extends Shape permits EquilateralTriangle {
+    // ...
+}
+
+// Attempting to create an unpermitted subclass will cause a compile-time error.
+public class Pentagon extends Shape { // Error: Pentagon is not a permitted subclass
+    // ...
+}
+
+
+Java 21:
+
+String Templates
+
+String codingLanguage = "Java";
+String sentence = "${codingLanguage} is awesome";
+System.out.println(sentence); // Java is awesome
+
+
+
+
 
     
 
